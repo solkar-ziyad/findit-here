@@ -1,0 +1,5 @@
+import{STORAGE_KEY,VERSION}from"./config.js";const memory=new Map();export function loadData(){try{const x=JSON.parse(localStorage.getItem(STORAGE_KEY));if(x.version===0)return{...x,version:VERSION,notifications:[],draft:null};return x?.version===VERSION&&Array.isArray(x.items)?x:null}catch{return null}}
+export function saveData(x){const s=JSON.stringify({...x,version:VERSION});try{localStorage.setItem(STORAGE_KEY,s);return{ok:true}}catch(e){memory.set(STORAGE_KEY,s);return{ok:false,error:e?.name==="QuotaExceededError"?"Storage is full. Export reports or remove a photo.":"Browser storage is unavailable."}}}
+export function validateImport(x){if(!x||!Array.isArray(x.items))throw Error("Choose a FindIt Here JSON export.");const items=x.items.filter(i=>i&&typeof i.title==="string"&&["lost","found"].includes(i.type));if(items.length!==x.items.length)throw Error("The JSON contains invalid reports.");return{items,version:VERSION}}
+export const serializeData=x=>JSON.stringify({...x,version:VERSION},null,2);
+export function storageAvailable(){try{localStorage.setItem("findithere-test","1");localStorage.removeItem("findithere-test");return true}catch{return false}}

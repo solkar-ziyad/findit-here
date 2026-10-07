@@ -1,0 +1,4 @@
+import{el,link,badge,photo,dateLabel}from"../ui.js";
+export const head=(eyebrow,title,desc)=>el("header",{class:"container page-head"},el("p",{class:"eyebrow",text:eyebrow}),el("h1",{text:title}),el("p",{text:desc}));
+export function card(x,{score,query}={}){const title=link("#/item/"+encodeURIComponent(x.id),x.title);if(query){const i=x.title.toLowerCase().indexOf(query.toLowerCase());if(i>=0){title.replaceChildren(document.createTextNode(x.title.slice(0,i)),el("mark",{},x.title.slice(i,i+query.length)),document.createTextNode(x.title.slice(i+query.length)))}}return el("article",{class:"card item-card"},photo(x),el("div",{class:"item-card-body"},badge(x.type==="lost"?"Lost":"Found",x.type==="lost"?"badge-lost":"badge-found"),el("h3",{},title),el("p",{text:x.locationName+" · "+dateLabel(x.date)}),badge(x.status||"Open")))}
+export const empty=(title,desc,action)=>el("div",{class:"empty-state"},el("h2",{text:title}),el("p",{text:desc}),action);

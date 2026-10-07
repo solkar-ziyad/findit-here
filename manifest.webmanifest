@@ -1,0 +1,16 @@
+{
+  "name": "FindIt Here",
+  "short_name": "FindIt",
+  "start_url": "./index.html#/home",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f3ec",
+  "theme_color": "#275c46",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

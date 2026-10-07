@@ -1,0 +1,1 @@
+const d={en:{browse:"Browse",map:"Map",reports:"My reports",about:"About"},hi:{browse:"\u0916\u094b\u091c\u0947\u0902",map:"\u0928\u0915\u094d\u0936\u093e",reports:"\u092e\u0947\u0930\u0940 \u0930\u093f\u092a\u094b\u0930\u094d\u091f",about:"\u091c\u093e\u0928\u0915\u093e\u0930\u0940"}};export const t=(k,l="en")=>d[l]?.[k]||d.en[k]||k;

@@ -1,0 +1,3 @@
+export const normalizeAnswer=s=>String(s||"").normalize("NFKC").trim().replace(/\s+/g," ").toLowerCase();
+export const validEmail=s=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s||"").trim()),validPhone=s=>/^[+()\d .-]{7,24}$/.test(String(s||"").trim());
+export function validateReport(x){const e=[];for(const k of ["title","description","date","locationName","category","placeType"])if(!String(x[k]||"").trim())e.push(k);if(x.contactType==="email"&&!validEmail(x.contact))e.push("contact");if(x.contactType==="phone"&&!validPhone(x.contact))e.push("contact");if(!x.consent)e.push("consent");if(x.type==="found"&&(!x.question||!x.answer))e.push("question");return e}
